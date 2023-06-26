@@ -1,0 +1,6 @@
+C:\Users\User\Desktop\INQNASPASARMAN DLL\LedControllCITY\LedControllCITY\bin\Debug\LedControllCITY.dll
+C:\Users\User\Desktop\INQNASPASARMAN DLL\LedControllCITY\LedControllCITY\bin\Debug\LedControllCITY.pdb
+C:\Users\User\Desktop\INQNASPASARMAN DLL\LedControllCITY\LedControllCITY\obj\Debug\LedControllCITY.csproj.AssemblyReference.cache
+C:\Users\User\Desktop\INQNASPASARMAN DLL\LedControllCITY\LedControllCITY\obj\Debug\LedControllCITY.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\INQNASPASARMAN DLL\LedControllCITY\LedControllCITY\obj\Debug\LedControllCITY.dll
+C:\Users\User\Desktop\INQNASPASARMAN DLL\LedControllCITY\LedControllCITY\obj\Debug\LedControllCITY.pdb
