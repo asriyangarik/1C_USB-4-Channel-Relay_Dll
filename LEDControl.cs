@@ -318,16 +318,52 @@ namespace LedControllCITY
         {
             try
             {
-                usb_relay_device_info SelectedItem = RelayDeviceWrapper.usb_relay_device_enumerate();
-                usb_relay_device_info device = SelectedItem;
-                _mydevice = device;
-                _deviceHandle = RelayDeviceWrapper.usb_relay_device_open(ref device);
-                int numberOfRelays = (int)device.type;
+                string path = "C:/kassa_rele.txt";
+                StreamReader reader = new StreamReader(path);
+                string myModel = reader.ReadToEnd();
 
-                uint status = 0;
-                RelayDeviceWrapper.usb_relay_device_get_status(_deviceHandle, ref status);
+                List<usb_relay_device_info> devicesInfos = new List<usb_relay_device_info>();
+                usb_relay_device_info deviceInfo = RelayDeviceWrapper.usb_relay_device_enumerate();
+                devicesInfos.Add(deviceInfo);
 
-                return device.ToString() + "_Connected sucsesfull";
+                while (deviceInfo.next.ToInt32() > 0)
+                {
+                    deviceInfo = (usb_relay_device_info)Marshal.PtrToStructure(deviceInfo.next, typeof(usb_relay_device_info));
+                    devicesInfos.Add(deviceInfo);
+                }
+
+                foreach (var Mydevice in devicesInfos)
+                {
+                    var chouseDev = Mydevice.ToString().Substring(Mydevice.ToString().Length - 7);
+
+                    if (chouseDev == myModel)
+                    {
+                        usb_relay_device_info device = Mydevice;
+                        _mydevice = device;
+                        _deviceHandle = RelayDeviceWrapper.usb_relay_device_open(ref device);
+                        int numberOfRelays = (int)device.type;
+
+                        uint status = 0;
+                        RelayDeviceWrapper.usb_relay_device_get_status(_deviceHandle, ref status);
+
+                        return device.ToString() + "_Connected sucsesfull";
+                    }
+
+                }
+
+                return "Cannot Connect To devise chek the file";
+
+
+                //usb_relay_device_info SelectedItem = RelayDeviceWrapper.usb_relay_device_enumerate();
+                //usb_relay_device_info device = SelectedItem;
+                //_mydevice = device;
+                //_deviceHandle = RelayDeviceWrapper.usb_relay_device_open(ref device);
+                //int numberOfRelays = (int)device.type;
+
+                //uint status = 0;
+                //RelayDeviceWrapper.usb_relay_device_get_status(_deviceHandle, ref status);
+
+                //return device.ToString() + "_Connected sucsesfull";
             }
             catch (Exception)
             {
